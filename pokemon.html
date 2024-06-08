@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        img, html, body {
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+        }
+        .bg-brown-200 {
+            background-color: #BE915D;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">Retour</a>
+    <div id="card" class="w-96 mx-auto mt-28 py-2 px-3 rounded-lg border-8 border-yellow-200">
+        <div class="flex align-center justify-between">
+            <h1 id="pokeName" class="text-xl font-bold"></h1>
+            <div id="pokeType" class="flex gap-x-2"></div>
+        </div>
+        <div class="mx-auto w-full">
+            <img id="pokeSprite" src="" class="object-cover rounded-lg mx-auto mt-2 bg-gray-200 object-center w-full" alt="">
+        </div>
+        <div>
+            <h2 class="text-sm font-semibold mt-2">Attaques</h2>
+            <div id="pokeStats" class="flex flex-col uppercase gap-y-2 font-bold w-full"></div>
+        </div>
+    </div>
+
+
+    <script src="main.js"></script>
+    <script>
+        loadPokemon($_GET('id'));
+    </script>
+</body>
+</html>
