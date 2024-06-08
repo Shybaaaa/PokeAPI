@@ -24,7 +24,7 @@ function fetchAPI() {
     fetch(API_URL)
         .then(response => response.json())
         .then(data => {
-            const results = data.results
+            const { results } = data
             results.forEach(pokemon => {
                 // console.log(pokemon.name)
                 const item = document.createElement('a')
@@ -33,8 +33,7 @@ function fetchAPI() {
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
-                        const types = data.types
-                        const sprites = data.sprites
+                        const { types, sprites } = data
                         item.href = `pokemon.html?id=${data.id}`
                         const newElement = document.createElement('p')
                         newElement.innerText = `${pokemon.name} - #${data.id}`
@@ -48,11 +47,10 @@ function fetchAPI() {
                         div.appendChild(img)
                         item.appendChild(div)
                         types.map(type => {
-                            // console.log(type.type.name)
-                            const toto = document.createElement('li')
-                            toto.innerText = `${type.type.name}`
-                            toto.classList.add('text-sm', 'text-gray-500', 'font-medium', 'tracking-tight')
-                            item.appendChild(toto)
+                            const li = document.createElement('li')
+                            li.innerText = `${type.type.name}`
+                            li.classList.add('text-sm', 'text-gray-500', 'font-medium', 'tracking-tight')
+                            item.appendChild(li)
                         })
                     })
                     .catch(error => console.error(error))
@@ -74,12 +72,9 @@ function loadPokemon(id)
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
         .then(data => {
-            const types = data.types
-            const sprites = data.sprites
-            const abilities = data.abilities
+            const { types, sprites, abilities } = data
 
-
-            fetch(data.species.url)
+            fetch(data.species.url) // Permet
                 .then(response => response.json())
                 .then(data => {
                     pokeName.innerText = data.names[4].name
